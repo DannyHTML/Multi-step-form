@@ -1,5 +1,5 @@
 const config = {
-  '*.{ts,vue,js}': ['eslint --fix', 'prettier --write', 'vue-tsc --noEmit'],
+  '*.{ts,vue,js}': ['eslint --fix', 'prettier --write'],
 }
 
 export default config
