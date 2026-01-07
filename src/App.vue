@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
+import { RouterView } from 'vue-router';
+import NavigationStep from './components/NavigationStep.vue';
+import NavigationButton from './components/NavigationButton.vue';
+import { useFormStore } from '@/stores/form';
+
+const formStore = useFormStore();
 </script>
-<!-- TODO: Make setup correct before starting project. -->
-<!-- TODO: Is husky pre-commit running npm run test correctly -->
+
 <template>
-  <header>
-    <div class="wrapper">
-      <HelloWorld title="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <main>
+    <header class="h-20 flex justify-center items-center gap-5">
+      <NavigationStep routerLink="/personal-info" :routerStep="1" />
+      <NavigationStep routerLink="/select-plan" :routerStep="2" />
+      <NavigationStep routerLink="/about" :routerStep="3" />
+      <NavigationStep routerLink="/about" :routerStep="4" />
+    </header>
+    <div class="container relative z-10">
+      <RouterView />
     </div>
-  </header>
-
-  <RouterView />
+    <NavigationButton @data="formStore.nextStep()"> Next Step </NavigationButton>
+  </main>
 </template>
