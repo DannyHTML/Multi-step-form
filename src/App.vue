@@ -25,14 +25,18 @@ function goPrev() {
     <RouterView />
   </div>
 
-  <NavigationBottom :showLeftButton="!formStore.firstStep">
+  <NavigationBottom>
     <template #rightButton>
-      <ButtonNavigation @click="goNext">Next</ButtonNavigation>
+      <ButtonNavigation @click="goNext">Next Step</ButtonNavigation>
     </template>
-
+    <!-- TODO: Previous button not working, not showing up -->
     <template #leftButton>
-      <ButtonNavigation class="bg-transparent text-gray-500" @click="goPrev">
-        Previous
+      <ButtonNavigation
+        :showLeftButton="!formStore.firstStep"
+        class="bg-transparent text-gray-500"
+        @click="goPrev"
+      >
+        Previous Step
       </ButtonNavigation>
     </template>
   </NavigationBottom>
