@@ -10,7 +10,7 @@
       <RouterView />
     </div>
     <div>
-      <NavigationButtons :showLeftButton="!formStore.firstStep">
+      <NavigationButton :showLeftButton="!formStore.firstStep">
         <template #rightButton>
           <button @click="goNext" class="text-white font-medium rounded-sm bg-blue-950 px-3 py-2">
             Next
@@ -21,7 +21,7 @@
             Previous
           </button>
         </template>
-      </NavigationButtons>
+      </NavigationButton>
     </div>
   </main>
 </template>
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import NavigationStep from './NavigationStep.vue';
-import NavigationButtons from '@/NavigationButtons.vue';
+import NavigationButton from '@/components/NavigationButton.vue';
 import { useFormStore } from '@/stores/form.ts';
 import { useRouter } from 'vue-router';
 

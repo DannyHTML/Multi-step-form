@@ -1,17 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import PersonalInfoView from '../views/PersonalInfoView.vue';
+import SignupLayout from '@/components/SignupLayout.vue';
+import PersonalInfoView from '@/views/PersonalInfoView.vue';
+import SelectPlan from '@/views/SelectPlan.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/personal-info',
-      name: 'personal-info',
-      component: PersonalInfoView,
+      path: '/',
+      redirect: '/signup/personal-info',
+    },
+    {
+      path: '/signup',
+      component: SignupLayout,
       children: [
         {
-          path: '/select-plan',
-          component: () => import('@/views/SelectPlan.vue'),
+          path: 'personal-info',
+          name: 'PersonalInfo',
+          component: PersonalInfoView,
+        },
+        {
+          path: 'select-plan',
+          name: 'SelectPlan',
+          component: SelectPlan,
         },
       ],
     },

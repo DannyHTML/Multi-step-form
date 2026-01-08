@@ -1,4 +1,5 @@
-import { reactive } from 'vue';
+// stores/form.ts
+import { reactive, computed } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useFormStore = defineStore('form', () => {
@@ -6,18 +7,64 @@ export const useFormStore = defineStore('form', () => {
     name: '',
     email: '',
     phone: '',
+    errors: {
+      name: '',
+      email: '',
+      phone: '',
+    } as Record<string, string>,
   });
 
-  const validateForm = () => {
-    return formData.name !== '' && formData.email !== '' && formData.phone !== '';
-  };
+  const currentStep = reactive({ step: 1 });
+  const firstStep = computed(() => currentStep.step === 1);
 
-  const nextStep = () => {
-    if (!validateForm()) {
-      return console.log('Please fill in all required fields.');
+  const steps = [
+    '/signup/personal-info',
+    '/signup/select-plan',
+    '/signup/add-ons',
+    '/signup/summary',
+  ];
+
+  function validateStep1() {
+    let valid = true;
+
+    if (!formData.name.trim()) {
+      formData.errors.name = 'Name is required';
+      valid = false;
     }
-    console.log('Proceeding to the next step with data:', formData);
-  };
 
-  return { formData, nextStep };
+    if (!formData.email.trim()) {
+      formData.errors.email = 'Email is required';
+      valid = false;
+    }
+
+    if (!formData.phone.trim()) {
+      formData.errors.phone = 'Phone number is required';
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  function clearError(field: keyof typeof formData.errors) {
+    formData.errors[field] = '';
+  }
+
+  function nextStep() {
+    if (currentStep.step === 1 && !validateStep1()) {
+      return;
+    }
+
+    if (currentStep.step < steps.length) {
+      currentStep.step++;
+    }
+
+    return steps[currentStep.step - 1];
+  }
+
+  function prevStep() {
+    if (currentStep.step > 1) currentStep.step--;
+    return steps[currentStep.step - 1];
+  }
+
+  return { formData, currentStep, steps, nextStep, prevStep, firstStep, clearError };
 });

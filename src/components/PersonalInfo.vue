@@ -7,26 +7,32 @@
 
     <form class="flex flex-col gap-2">
       <FormInput
+        field="name"
+        :warning="!!formstore.formData.errors.name"
         type="text"
         label="Name"
-        for="Name"
+        inputId="Name"
         placeholder="e.g. Danny Jager"
         autocomplete="name"
         autofocus
         v-model="formstore.formData.name"
       />
       <FormInput
+        field="email"
+        :warning="!!formstore.formData.errors.email"
         type="email"
         label="Email Address"
-        for="Email"
+        inputId="Email"
         placeholder="e.g. danny@example.com"
         autocomplete="email"
         v-model="formstore.formData.email"
       />
       <FormInput
+        field="phone"
+        :warning="!!formstore.formData.errors.phone"
         type="tel"
         label="Phone Number"
-        for="Phone"
+        inputId="Phone"
         placeholder="e.g. +1 234 567 890"
         autocomplete="tel"
         v-model="formstore.formData.phone"
