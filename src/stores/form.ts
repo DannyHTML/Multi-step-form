@@ -1,5 +1,5 @@
 // stores/form.ts
-import { reactive, computed } from 'vue';
+import { reactive, computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useFormStore = defineStore('form', () => {
@@ -14,13 +14,30 @@ export const useFormStore = defineStore('form', () => {
     } as Record<string, string>,
   });
 
+  const plans = [
+    { id: 'arcade', name: 'Arcade', monthly: 9, yearly: 90 },
+    { id: 'advanced', name: 'Advanced', monthly: 12, yearly: 120 },
+    { id: 'pro', name: 'Pro', monthly: 15, yearly: 150 },
+  ] as const;
+
+  const selectedPlanId = ref<'arcade' | 'advanced' | 'pro'>('arcade');
+  const isYearly = ref(false);
+
+  const selectedPlan = computed(() => {
+    return plans.find((plan) => plan.id === selectedPlanId.value)!;
+  });
+
+  const selectedPlanPrice = computed(() =>
+    isYearly.value ? selectedPlan.value.yearly : selectedPlan.value.monthly,
+  );
+
   const currentStep = reactive({ step: 1 });
   const firstStep = computed(() => currentStep.step === 1);
 
   const steps = [
     '/signup/personal-info',
     '/signup/select-plan',
-    '/signup/add-ons',
+    '/signup/pick-add-ons',
     '/signup/summary',
   ];
 
@@ -66,5 +83,17 @@ export const useFormStore = defineStore('form', () => {
     return steps[currentStep.step - 1];
   }
 
-  return { formData, currentStep, steps, nextStep, prevStep, firstStep, clearError };
+  return {
+    formData,
+    currentStep,
+    steps,
+    nextStep,
+    prevStep,
+    firstStep,
+    clearError,
+    selectedPlan,
+    selectedPlanPrice,
+    isYearly,
+    selectedPlanId,
+  };
 });

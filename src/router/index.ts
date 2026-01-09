@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SignupLayout from '@/components/SignupLayout.vue';
 import PersonalInfoView from '@/views/PersonalInfoView.vue';
-import SelectPlan from '@/views/SelectPlan.vue';
+import SelectPlan from '@/views/SelectPlanView.vue';
+import PickAddOns from '@/views/PickAddOnsView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,11 @@ const router = createRouter({
           path: 'select-plan',
           name: 'SelectPlan',
           component: SelectPlan,
+        },
+        {
+          path: 'pick-add-ons',
+          name: 'PickAddOns',
+          component: PickAddOns,
         },
       ],
     },
