@@ -27,17 +27,17 @@ export const useFormStore = defineStore('form', () => {
   function validateStep1() {
     let valid = true;
 
-    if (!formData.name.trim()) {
+    if (!formData.name) {
       formData.errors.name = 'Name is required';
       valid = false;
     }
 
-    if (!formData.email.trim()) {
+    if (!formData.email) {
       formData.errors.email = 'Email is required';
       valid = false;
     }
 
-    if (!formData.phone.trim()) {
+    if (!formData.phone) {
       formData.errors.phone = 'Phone number is required';
       valid = false;
     }

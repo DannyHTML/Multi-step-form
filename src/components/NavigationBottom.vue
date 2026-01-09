@@ -1,11 +1,9 @@
 <template>
   <div class="fixed bottom-0 w-full h-16 bg-white flex justify-between items-center px-4">
-    <!-- LEFT BUTTON -->
     <div>
       <slot name="leftButton" v-if="showLeftButton" />
     </div>
 
-    <!-- RIGHT BUTTON -->
     <div>
       <slot name="rightButton" />
     </div>
