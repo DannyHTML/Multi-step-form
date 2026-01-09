@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: Add accessibility features and check if this can be written cleaner -->
   <div class="flex justify-center mt-4 bg-blue-200/40 rounded-lg">
     <div class="flex items-center gap-3 p-2.5">
       <!-- Monthly -->
