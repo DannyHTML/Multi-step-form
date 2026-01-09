@@ -26,7 +26,6 @@ function goPrev() {
   </div>
 
   <NavigationBottom :showLeftButton="!formStore.firstStep">
-    <!-- TODO: Previous button not working, not showing up -->
     <template #leftButton>
       <ButtonNavigation @click="goPrev"> Previous Step </ButtonNavigation>
     </template>
