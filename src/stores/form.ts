@@ -1,6 +1,8 @@
 // stores/form.ts
 import { reactive, computed, ref } from 'vue';
 import { defineStore } from 'pinia';
+import type { Plans } from '@/types/plans';
+import type { AddOns } from '@/types/addOns';
 
 export const useFormStore = defineStore('form', () => {
   const formData = reactive({
@@ -14,21 +16,49 @@ export const useFormStore = defineStore('form', () => {
     } as Record<string, string>,
   });
 
-  const plans = [
+  const plans: readonly Plans[] = [
     { id: 'arcade', name: 'Arcade', monthly: 9, yearly: 90 },
     { id: 'advanced', name: 'Advanced', monthly: 12, yearly: 120 },
     { id: 'pro', name: 'Pro', monthly: 15, yearly: 150 },
-  ] as const;
+  ];
 
-  const selectedPlanId = ref<'arcade' | 'advanced' | 'pro'>('arcade');
+  const addOns: readonly AddOns[] = [
+    {
+      id: 'online-services',
+      name: 'Online Service',
+      description: 'Access to multiplayer games',
+      monthly: 1,
+      yearly: 10,
+    },
+    {
+      id: 'larger-storage',
+      name: 'Larger Storage',
+      description: 'Extra 1TB of cloud save',
+      monthly: 2,
+      yearly: 20,
+    },
+    {
+      id: 'customizable-profile',
+      name: 'Customizable Profile',
+      description: 'Custom theme on your profile',
+      monthly: 2,
+      yearly: 20,
+    },
+  ];
+
+  const selectedPlanId = ref<Plans['id']>('arcade');
+  const selectedAddOnId = ref<AddOns['id']>('online-services');
   const isYearly = ref(false);
 
-  const selectedPlan = computed(() => {
-    return plans.find((plan) => plan.id === selectedPlanId.value)!;
-  });
+  const selectedPlan = computed(() => plans.find((plan) => plan.id === selectedPlanId.value)!);
+  const selectedAddOn = computed(() => addOns.find((addOn) => addOn.id === selectedAddOnId.value)!);
 
   const selectedPlanPrice = computed(() =>
     isYearly.value ? selectedPlan.value.yearly : selectedPlan.value.monthly,
+  );
+
+  const selectedAddOnPrice = computed(() =>
+    isYearly.value ? selectedAddOn.value.yearly : selectedAddOn.value.monthly,
   );
 
   const currentStep = reactive({ step: 1 });
@@ -92,7 +122,9 @@ export const useFormStore = defineStore('form', () => {
     firstStep,
     clearError,
     selectedPlan,
+    selectedAddOn,
     selectedPlanPrice,
+    selectedAddOnPrice,
     isYearly,
     selectedPlanId,
   };
