@@ -4,10 +4,15 @@
     <div class="mt-2 mb-4 text-grey-500">
       {{ description }}
     </div>
+    <form>
+      <FormAddOnsSelector />
+    </form>
   </div>
 </template>
 
 <script setup lang="ts">
+import FormAddOnsSelector from './FormAddOnsSelector.vue';
+
 defineProps<{
   title: string;
   description?: string;
