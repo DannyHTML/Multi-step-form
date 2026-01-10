@@ -8,7 +8,7 @@
       {{ routerStep }}
     </RouterLink>
   </nav>
-  <img :src="LogoMobile" alt="Logo Mobile" class="fixed top-0 object-cover w-full" />
+  <img :src="LogoMobile" alt="Logo Mobile" class="fixed top-0 object-cover w-full max-w-3xl" />
 </template>
 
 <script setup lang="ts">
