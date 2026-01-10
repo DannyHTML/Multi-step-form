@@ -5,7 +5,7 @@
       {{ description }}
     </div>
     <form class="flex flex-col gap-3">
-      <FormAddOnsSelector :selectId="'online-services'" checked />
+      <FormAddOnsSelector :selectId="'online-services'" />
       <FormAddOnsSelector :selectId="'larger-storage'" />
       <FormAddOnsSelector :selectId="'customizable-profile'" />
     </form>

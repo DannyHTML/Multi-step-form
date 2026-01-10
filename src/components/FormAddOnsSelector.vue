@@ -1,8 +1,9 @@
 <template>
+  <!-- TODO: Look at the v-modal logic -->
   <label
     :for="selectId"
     class="block rounded-lg p-4 outline transition outline-blue-950"
-    :class="[checked ? 'bg-blue-200/40' : '']"
+    :class="[isSelected ? 'bg-blue-200/40' : '']"
   >
     <div class="flex gap-3 items-center">
       <input
@@ -11,6 +12,7 @@
         :name="selectId"
         type="checkbox"
         class="w-4.5 h-4.5"
+        v-model="isSelected"
       />
       <div class="grow">
         <span class="block font-bold first-letter:capitalize">{{ selectId }}</span>
@@ -22,8 +24,15 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue';
+import { useFormStore } from '@/stores/form';
+
+const props = defineProps<{
   selectId: 'online-services' | 'larger-storage' | 'customizable-profile';
   checked?: boolean;
 }>();
+
+const formStore = useFormStore();
+
+const isSelected = computed(() => formStore.selectedAddOnId === props.selectId);
 </script>

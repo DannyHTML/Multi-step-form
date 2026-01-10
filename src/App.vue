@@ -10,7 +10,7 @@ const router = useRouter();
 
 function goNext() {
   const nextRoute = formStore.nextStep();
-  if (!nextRoute) return console.log('Please fill in all required fields.');
+  if (!nextRoute) return console.error('Please fill in all required fields.');
   router.push(nextRoute);
 }
 

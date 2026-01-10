@@ -127,5 +127,6 @@ export const useFormStore = defineStore('form', () => {
     selectedAddOnPrice,
     isYearly,
     selectedPlanId,
+    selectedAddOnId,
   };
 });
