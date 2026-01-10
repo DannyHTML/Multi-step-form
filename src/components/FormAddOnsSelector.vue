@@ -18,7 +18,9 @@
         <span class="block font-bold first-letter:capitalize">{{ selectId }}</span>
         <span class="block text-sm text-grey-500">Access to multiplayer games</span>
       </div>
-      <span class="text-blue-950"> test </span>
+      <span class="text-sm text-purple-600">
+        {{ `+$${formStore.selectedAddOnPrice}/${formStore.isYearly ? 'yr' : 'mo'}` }}
+      </span>
     </div>
   </label>
 </template>
