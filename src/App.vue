@@ -1,20 +1,37 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
+import { RouterView } from 'vue-router';
+import NavigationBottom from './components/NavigationBottom.vue';
+import ButtonNavigation from './components/ButtonNavigation.vue';
+import { useFormStore } from '@/stores/form';
+import { useRouter } from 'vue-router';
+
+const formStore = useFormStore();
+const router = useRouter();
+
+function goNext() {
+  const nextRoute = formStore.nextStep();
+  if (!nextRoute) return console.log('Please fill in all required fields.');
+  router.push(nextRoute);
+}
+
+function goPrev() {
+  const prevRoute = formStore.prevStep();
+  if (prevRoute) router.push(prevRoute);
+}
 </script>
-<!-- TODO: Make setup correct before starting project. -->
-<!-- TODO: Is husky pre-commit running npm run test correctly -->
+
 <template>
-  <header>
-    <div class="wrapper">
-      <HelloWorld title="You did it!" />
+  <div class="container relative z-10">
+    <RouterView />
+  </div>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <NavigationBottom :showLeftButton="!formStore.firstStep">
+    <template #leftButton>
+      <ButtonNavigation @click="goPrev"> Previous Step </ButtonNavigation>
+    </template>
 
-  <RouterView />
+    <template #rightButton>
+      <ButtonNavigation @click="goNext">Next Step</ButtonNavigation>
+    </template>
+  </NavigationBottom>
 </template>
