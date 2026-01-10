@@ -4,8 +4,10 @@
     <div class="mt-2 mb-4 text-grey-500">
       {{ description }}
     </div>
-    <form>
-      <FormAddOnsSelector />
+    <form class="flex flex-col gap-3">
+      <FormAddOnsSelector :selectId="'online-services'" checked />
+      <FormAddOnsSelector :selectId="'larger-storage'" />
+      <FormAddOnsSelector :selectId="'customizable-profile'" />
     </form>
   </div>
 </template>
