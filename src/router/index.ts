@@ -4,6 +4,8 @@ import PersonalInfoView from '@/views/PersonalInfoView.vue';
 import SelectPlan from '@/views/SelectPlanView.vue';
 import PickAddOns from '@/views/PickAddOnsView.vue';
 
+// TODO: Add route guards to protect the signup steps.
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
