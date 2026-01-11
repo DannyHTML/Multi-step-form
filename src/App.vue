@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router';
 
 const formStore = useFormStore();
 const router = useRouter();
-
+// TODO: I can do the validation logic in index.ts router file.
 function goNext() {
   const nextRoute = formStore.nextStep();
   if (!nextRoute) return console.error('Please fill in all required fields.');

@@ -128,5 +128,6 @@ export const useFormStore = defineStore('form', () => {
     isYearly,
     selectedPlanId,
     selectedAddOnId,
+    validateStep1,
   };
 });
