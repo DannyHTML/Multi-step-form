@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: Look at the v-modal logic -->
   <label
     :for="selectId"
     class="block rounded-lg p-4 outline transition outline-blue-950"
@@ -12,14 +11,14 @@
         :name="selectId"
         type="checkbox"
         class="w-4.5 h-4.5"
-        v-model="isSelected"
+        @click="onClick"
       />
       <div class="grow">
         <span class="block font-bold first-letter:capitalize">{{ selectId }}</span>
         <span class="block text-sm text-grey-500">Access to multiplayer games</span>
       </div>
       <span class="text-sm text-purple-600">
-        {{ `+$${formStore.selectedAddOnPrice}/${formStore.isYearly ? 'yr' : 'mo'}` }}
+        {{ `+$${addOnPrice}/${formStore.isYearly ? 'yr' : 'mo'}` }}
       </span>
     </div>
   </label>
@@ -36,5 +35,20 @@ const props = defineProps<{
 
 const formStore = useFormStore();
 
-const isSelected = computed(() => formStore.selectedAddOnId === props.selectId);
+function onClick() {
+  const index = formStore.selectedAddOnIds.indexOf(props.selectId);
+  if (index === -1) {
+    formStore.selectedAddOnIds.push(props.selectId);
+  } else {
+    formStore.selectedAddOnIds.splice(index, 1);
+  }
+}
+
+const isSelected = computed(() => formStore.selectedAddOnIds.includes(props.selectId));
+
+const addOnPrice = computed(() => {
+  const addOn = formStore.addOns.find((a) => a.id === props.selectId);
+  if (!addOn) return 0;
+  return formStore.isYearly ? addOn.yearly : addOn.monthly;
+});
 </script>

@@ -2,20 +2,20 @@
 import { RouterView } from 'vue-router';
 import NavigationBottom from './components/NavigationBottom.vue';
 import ButtonNavigation from './components/ButtonNavigation.vue';
-import { useFormStore } from '@/stores/form';
+import { useStepValidation } from '@/stores/stepValidation';
 import { useRouter } from 'vue-router';
 
-const formStore = useFormStore();
+const stepValidationStore = useStepValidation();
 const router = useRouter();
 // TODO: I can do the validation logic in index.ts router file.
 function goNext() {
-  const nextRoute = formStore.nextStep();
+  const nextRoute = stepValidationStore.nextStep();
   if (!nextRoute) return console.error('Please fill in all required fields.');
   router.push(nextRoute);
 }
 
 function goPrev() {
-  const prevRoute = formStore.prevStep();
+  const prevRoute = stepValidationStore.prevStep();
   if (prevRoute) router.push(prevRoute);
 }
 </script>
@@ -25,7 +25,7 @@ function goPrev() {
     <RouterView />
   </div>
 
-  <NavigationBottom :showLeftButton="!formStore.firstStep">
+  <NavigationBottom :showLeftButton="!stepValidationStore.firstStep">
     <template #leftButton>
       <ButtonNavigation @click="goPrev"> Previous Step </ButtonNavigation>
     </template>

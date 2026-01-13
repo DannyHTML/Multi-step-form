@@ -3,7 +3,7 @@ import SignupLayout from '@/components/SignupLayout.vue';
 import PersonalInfoView from '@/views/PersonalInfoView.vue';
 import SelectPlan from '@/views/SelectPlanView.vue';
 import PickAddOns from '@/views/PickAddOnsView.vue';
-import { useFormStore } from '@/stores/form';
+import { useStepValidation } from '@/stores/stepValidation';
 
 // TODO: Add route guards to protect the signup steps.
 // TODO: Also, remove the goNext/goPrev function from App.vue and handle navigation here instead.
@@ -30,13 +30,11 @@ const router = createRouter({
           name: 'SelectPlan',
           component: SelectPlan,
           beforeEnter: (to, from, next) => {
-            const formStore = useFormStore();
-            if (formStore.validateStep1()) {
-              console.log('Step 1 validated, proceeding to Step 2');
+            const stepValidationStore = useStepValidation();
+            if (stepValidationStore.validateStep1()) {
               next();
             } else {
-              console.log('Step 1 validation failed, redirecting to Step 1');
-              next('/signup/personal-info');
+              return false;
             }
           },
         },
