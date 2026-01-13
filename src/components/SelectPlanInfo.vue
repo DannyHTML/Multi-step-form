@@ -6,21 +6,21 @@
     </div>
 
     <form class="flex flex-col gap-3">
-      <FormOptionSelector
+      <FormPlanSelector
         id="arcade"
         name="Arcade"
         :price="formStore.isYearly ? 90 : 9"
         :icon="iconArcade"
       />
 
-      <FormOptionSelector
+      <FormPlanSelector
         id="advanced"
         name="Advanced"
         :price="formStore.isYearly ? 120 : 12"
         :icon="iconAdvanced"
       />
 
-      <FormOptionSelector
+      <FormPlanSelector
         id="pro"
         name="Pro"
         :price="formStore.isYearly ? 150 : 15"
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import FormOptionSelector from './FormOptionSelector.vue';
+import FormPlanSelector from './FormPlanSelector.vue';
 import iconArcade from '@/assets/icon-arcade.svg';
 import iconAdvanced from '@/assets/icon-advanced.svg';
 import iconPro from '@/assets/icon-pro.svg';
