@@ -31,7 +31,9 @@ function goPrev() {
     </template>
 
     <template #rightButton>
-      <ButtonNavigation @click="goNext">Next Step</ButtonNavigation>
+      <ButtonNavigation @click="goNext">{{
+        stepValidationStore.lastStep ? 'Confirm' : 'Next Step'
+      }}</ButtonNavigation>
     </template>
   </NavigationBottom>
 </template>

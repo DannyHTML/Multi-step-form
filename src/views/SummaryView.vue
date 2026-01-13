@@ -1,5 +1,7 @@
 <template>
-  <div class="">Summary</div>
+  <SummaryLayout />
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SummaryLayout from '@/components/SummaryLayout.vue';
+</script>
