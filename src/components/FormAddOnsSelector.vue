@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useFormStore } from '@/stores/form';
+import type { AddOns } from '@/types/addOns';
 
 const props = defineProps<{
   selectId: 'online-services' | 'larger-storage' | 'customizable-profile';
@@ -47,7 +48,7 @@ function onClick() {
 const isSelected = computed(() => formStore.selectedAddOnIds.includes(props.selectId));
 
 const addOnPrice = computed(() => {
-  const addOn = formStore.addOns.find((a) => a.id === props.selectId);
+  const addOn = formStore.addOns.find((a: AddOns) => a.id === props.selectId);
   if (!addOn) return 0;
   return formStore.isYearly ? addOn.yearly : addOn.monthly;
 });
