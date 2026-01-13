@@ -6,7 +6,7 @@
   >
     <div class="flex gap-3 items-center">
       <input
-        :checked="checked"
+        :checked="isSelected"
         :id="selectId"
         :name="selectId"
         type="checkbox"
@@ -31,7 +31,6 @@ import type { AddOns } from '@/types/addOns';
 
 const props = defineProps<{
   selectId: 'online-services' | 'larger-storage' | 'customizable-profile';
-  checked?: boolean;
 }>();
 
 const formStore = useFormStore();
