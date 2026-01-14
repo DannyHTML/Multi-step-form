@@ -20,7 +20,6 @@ import { useFormStore } from '@/stores/form';
 import { useStepValidation } from '@/stores/stepValidation';
 
 const formStore = useFormStore();
-console.log(formStore.isYearly);
 const stepValidationStore = useStepValidation();
 
 const planName = formStore.selectedPlan.name;
