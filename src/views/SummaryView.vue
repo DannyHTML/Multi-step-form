@@ -4,9 +4,13 @@
     description="Double-check everything looks OK before confirming."
     :PlanName="planName"
     :subLength="subLength"
-    :price="formStore.selectedPlan.monthly"
+    :price="pricePlan"
     :subLengthShort="formStore.isYearly ? '/yr' : '/mo'"
     @click="stepValidationStore.goToStep(2)"
+    :addOns="formStore.summaryAddOns"
+    :totalTitle="formStore.isYearly ? 'per year' : 'per month'"
+    :isYearly="formStore.isYearly"
+    :totalPrice="totalPrice"
   />
 </template>
 
@@ -16,13 +20,13 @@ import { useFormStore } from '@/stores/form';
 import { useStepValidation } from '@/stores/stepValidation';
 
 const formStore = useFormStore();
+console.log(formStore.isYearly);
 const stepValidationStore = useStepValidation();
 
 const planName = formStore.selectedPlan.name;
 const subLength = formStore.isYearly ? '(yearly)' : '(monthly)';
-
-console.log('selected plan', formStore.selectedPlan);
-console.log('selected Add-Ons', formStore.selectedAddOns);
-
-console.log(formStore.selectedAddOns.map((addOn) => addOn.name));
+const pricePlan = formStore.isYearly
+  ? formStore.selectedPlan.yearly
+  : formStore.selectedPlan.monthly;
+const totalPrice = formStore.selectedAddOnsPrice + formStore.selectedPlanPrice;
 </script>

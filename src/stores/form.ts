@@ -64,9 +64,17 @@ export const useFormStore = defineStore(
 
     const selectedAddOnsPrice = computed(() =>
       selectedAddOns.value.reduce(
-        (total, addOn) => total + (isYearly.value ? addOn.yearly : addOn.monthly),
+        (total: number, addOn: AddOns) => total + (isYearly.value ? addOn.yearly : addOn.monthly),
         0,
       ),
+    );
+
+    const summaryAddOns = computed(() =>
+      selectedAddOns.value.map((addOns: AddOns) => ({
+        name: addOns.name,
+        price: isYearly.value ? addOns.yearly : addOns.monthly,
+        id: addOns.id,
+      })),
     );
 
     function clearError(field: keyof typeof formData.errors) {
@@ -85,6 +93,7 @@ export const useFormStore = defineStore(
       selectedAddOnIds,
       plans,
       addOns,
+      summaryAddOns,
     };
   },
   {
