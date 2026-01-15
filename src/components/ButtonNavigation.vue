@@ -2,7 +2,7 @@
   <button
     type="button"
     @click="$emit('click')"
-    class="text-white font-medium rounded-sm bg-blue-950 px-3 py-2"
+    class="text-white font-medium rounded-sm bg-blue-950 px-3 py-2 cursor-pointer"
   >
     <slot />
   </button>

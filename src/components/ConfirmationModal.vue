@@ -36,7 +36,7 @@
 
             <button
               type="button"
-              class="mt-6 rounded bg-blue-600 px-4 py-2 text-white"
+              class="mt-6 rounded bg-blue-600 px-4 py-2 text-white cursor-pointer"
               @click="handleClose"
             >
               Another subscription
