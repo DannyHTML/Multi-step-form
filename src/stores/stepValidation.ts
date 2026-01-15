@@ -79,6 +79,5 @@ export const useStepValidation = defineStore(
       goToStep,
       openModal,
     };
-  },
-  { persist: true },
+  }
 );

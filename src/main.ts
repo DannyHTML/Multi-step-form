@@ -2,7 +2,7 @@ import './main.css';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
+import { createPersistedStatePlugin } from 'pinia-plugin-persistedstate-2'
 
 import App from './App.vue';
 import router from './router';
@@ -10,7 +10,10 @@ import router from './router';
 const app = createApp(App);
 
 const pinia = createPinia();
-pinia.use(piniaPluginPersistedState);
+
+const persistedStatePlugin = createPersistedStatePlugin();
+
+pinia.use(persistedStatePlugin);
 
 app.use(pinia);
 app.use(router);
