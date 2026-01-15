@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 import { useFormStore } from './form';
-import { computed, reactive } from 'vue';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import router from '@/router';
 
 export const useStepValidation = defineStore(
   'stepValidation',
   () => {
     const formStore = useFormStore();
-
-    const currentStep = reactive({ step: 1 });
-    const firstStep = computed(() => currentStep.step === 1);
+    const route = useRoute();
 
     const steps = [
       '/signup/personal-info',
@@ -16,6 +16,14 @@ export const useStepValidation = defineStore(
       '/signup/pick-add-ons',
       '/signup/summary',
     ];
+
+    const currentStep = computed(() => {
+      const index = steps.indexOf(route.path);
+      return index === -1 ? 1 : index + 1;
+    });
+
+    const firstStep = computed(() => currentStep.value === 1);
+    const lastStep = computed(() => currentStep.value === steps.length);
 
     function validateStep1() {
       let valid = true;
@@ -39,28 +47,32 @@ export const useStepValidation = defineStore(
     }
 
     function nextStep() {
-      if (currentStep.step === 1 && !validateStep1()) {
-        return;
-      }
-
-      if (currentStep.step < steps.length) {
-        currentStep.step++;
-      }
-
-      return steps[currentStep.step - 1];
+      const nextRoute = steps[currentStep.value]; // already +1 indexed
+      if (!nextRoute) return console.error('No more steps available.');
+      router.push(nextRoute);
     }
 
     function prevStep() {
-      if (currentStep.step > 1) currentStep.step--;
-      return steps[currentStep.step - 1];
+      const previousRoute = steps[currentStep.value - 2];
+      if (!previousRoute) return console.error('No previous step available.');
+      router.push(previousRoute);
+    }
+
+    function goToStep(step: number) {
+      const nextRoute = steps[step - 1];
+      if (!nextRoute) return console.error('Try to go to a valid step.');
+      router.push(nextRoute);
     }
 
     return {
       currentStep,
       firstStep,
+      lastStep,
+      steps,
       validateStep1,
       nextStep,
       prevStep,
+      goToStep,
     };
   },
   { persist: true },
