@@ -7,7 +7,7 @@
       <NavigationStep routerLink="/signup/summary" :routerStep="4" />
     </header>
     <div class="relative z-10">
-      <RouterView />
+      <router-view />
     </div>
   </main>
 </template>

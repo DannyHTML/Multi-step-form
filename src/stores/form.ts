@@ -81,6 +81,18 @@ export const useFormStore = defineStore(
       formData.errors[field] = '';
     }
 
+    function resetForm() {
+      formData.name = '';
+      formData.email = '';
+      formData.phone = '';
+      formData.errors.name = '';
+      formData.errors.email = '';
+      formData.errors.phone = '';
+      selectedPlanId.value = 'arcade';
+      selectedAddOnIds.value = [];
+      isYearly.value = false;
+    }
+
     return {
       formData,
       clearError,
@@ -94,6 +106,7 @@ export const useFormStore = defineStore(
       plans,
       addOns,
       summaryAddOns,
+      resetForm,
     };
   },
   {
