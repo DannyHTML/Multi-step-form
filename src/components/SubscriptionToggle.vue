@@ -1,6 +1,6 @@
 <template>
   <!-- TODO: Add accessibility features and check if this can be written cleaner -->
-  <div class="flex justify-center mt-4 bg-blue-200/40 rounded-lg">
+  <div class="flex justify-center mt-4 bg-blue-200/80 rounded-lg">
     <div class="flex items-center gap-3 p-2.5">
       <!-- Monthly -->
       <span
@@ -15,7 +15,7 @@
       <Switch
         :model-value="enabled"
         @update:model-value="update"
-        class="relative inline-flex h-6 w-11 bg-blue-950 items-center rounded-full"
+        class="relative inline-flex h-6 w-11 bg-blue-950 items-center rounded-full cursor-pointer"
       >
         <span class="sr-only"> Switch between monthly and yearly </span>
 

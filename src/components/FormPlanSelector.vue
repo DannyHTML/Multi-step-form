@@ -9,8 +9,8 @@
     />
 
     <div
-      class="block rounded-lg p-4 outline transition"
-      :class="isSelected ? 'bg-blue-200/40 outline-blue-950' : 'outline-gray-300'"
+      class="block rounded-lg p-4 border border-black transition"
+      :class="isSelected ? 'bg-blue-200/80 border border-blue-400' : 'outline-gray-300'"
     >
       <div class="flex gap-3 items-center">
         <img :src="icon" class="h-10" />

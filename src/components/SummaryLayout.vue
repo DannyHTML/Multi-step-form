@@ -25,19 +25,19 @@
       <hr class="text-grey-500 my-5" />
       <div class="flex flex-col gap-2">
         <div v-for="addOn in addOns" :key="addOn.id" class="flex justify-between items-center">
-          <span class="text-grey-500">{{ addOn.name }}</span>
-          <span class="">{{ `+$${addOn.price}${subLengthShort}` }}</span>
+          <span>{{ addOn.name }}</span>
+          <span>{{ `+$${addOn.price}${subLengthShort}` }}</span>
         </div>
       </div>
     </div>
 
     <!-- Total cost -->
     <div class="flex justify-between items-center p-4">
-      <span class="text-grey-500">
+      <span class="font-medium">
         {{ `Total (${totalTitle})` }}
       </span>
       <span class="text-blue-950 font-bold">
-        {{ `${isYearly ? '' : '+'}$${totalPrice}/${isYearly ? 'yr' : 'mo'}` }}
+        {{ formattedTotalPrice }}
       </span>
     </div>
   </div>
@@ -55,6 +55,7 @@ defineProps<{
   totalTitle: string;
   totalPrice: number;
   isYearly: boolean;
+  formattedTotalPrice: number | string;
 }>();
 
 const emit = defineEmits(['click']);

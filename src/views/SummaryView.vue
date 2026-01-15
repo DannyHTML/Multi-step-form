@@ -11,6 +11,7 @@
     :totalTitle="formStore.isYearly ? 'per year' : 'per month'"
     :isYearly="formStore.isYearly"
     :totalPrice="totalPrice"
+    :formattedTotalPrice="formattedTotalPrice"
   />
 </template>
 
@@ -18,6 +19,7 @@
 import SummaryLayout from '@/components/SummaryLayout.vue';
 import { useFormStore } from '@/stores/form';
 import { useStepValidation } from '@/stores/stepValidation';
+import { computed } from 'vue';
 
 const formStore = useFormStore();
 const stepValidationStore = useStepValidation();
@@ -27,5 +29,9 @@ const subLength = formStore.isYearly ? '(yearly)' : '(monthly)';
 const pricePlan = formStore.isYearly
   ? formStore.selectedPlan.yearly
   : formStore.selectedPlan.monthly;
+
 const totalPrice = formStore.selectedAddOnsPrice + formStore.selectedPlanPrice;
+const formattedTotalPrice = computed(() => {
+  return formStore.isYearly ? `+$${totalPrice}/yr` : `+$${totalPrice}/mo`;
+});
 </script>

@@ -1,6 +1,5 @@
 <template>
   <nav class="flex z-10 justify-center items-center w-fit text-white font-medium">
-    <!-- TODO: Need to keep track of the current step! -->
     <RouterLink
       :to="routerLink"
       active-class="bg-blue-300 border-transparent text-black duration-150 transition-all"
