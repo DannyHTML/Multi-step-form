@@ -17,6 +17,7 @@
     "lint": "eslint . --fix --cache",
     "format": "prettier --write ./src",
     "prepare": "husky",
+    "postbuild": "copy dist\\index.html dist\\404.html",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
