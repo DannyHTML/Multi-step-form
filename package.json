@@ -16,7 +16,9 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
     "format": "prettier --write ./src",
-    "prepare": "husky"
+    "prepare": "husky",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
@@ -39,6 +41,7 @@
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.39.2",
     "eslint-plugin-vue": "~10.6.2",
+    "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "jsdom": "^27.3.0",
