@@ -6,8 +6,8 @@
       <NavigationStep routerLink="/signup/pick-add-ons" :routerStep="3" />
       <NavigationStep routerLink="/signup/summary" :routerStep="4" />
     </header>
-    <div class="relative z-10">
-      <RouterView />
+    <div class="relative z-10 max-w-2xl mx-auto md:mt-10">
+      <router-view />
     </div>
   </main>
 </template>

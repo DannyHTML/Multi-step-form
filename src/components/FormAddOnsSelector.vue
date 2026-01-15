@@ -1,8 +1,8 @@
 <template>
   <label
     :for="selectId"
-    class="block rounded-lg p-4 outline transition outline-blue-950"
-    :class="[isSelected ? 'bg-blue-200/40' : '']"
+    class="block rounded-lg p-4 transition border border-black cursor-pointer"
+    :class="[isSelected ? 'bg-blue-200/80 border border-blue-400' : '']"
   >
     <div class="flex gap-3 items-center">
       <input
